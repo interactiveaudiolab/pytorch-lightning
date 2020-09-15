@@ -36,7 +36,7 @@ Documentation
 import logging as python_logging
 
 _logger = python_logging.getLogger("lightning")
-_logger.addHandler(python_logging.StreamHandler())
+# _logger.addHandler(python_logging.StreamHandler())
 _logger.setLevel(python_logging.INFO)
 
 try:
