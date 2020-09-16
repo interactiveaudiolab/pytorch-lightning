@@ -194,8 +194,6 @@ class TrainLoop:
 
         self.trainer.signal_connector.restore_signals()
 
-        print("ON TRAIN END -------------------------------------------------------------------------")
-
     def check_checkpoint_callback(self, should_check_val, force_save=False):
         model = self.trainer.get_model()
 

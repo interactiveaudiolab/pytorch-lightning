@@ -1,7 +1,5 @@
 import signal
 
-from pytorch_lightning.trainer.states import TrainerState
-
 
 class SignalConnector:
     """
@@ -32,6 +30,4 @@ class SignalConnector:
 
     def default_teardown(self, signum, frame):  # pragma: no-cover
         """ This default teardown raises KeyboardInterrupt and lets Trainer handle the graceful shutdown. """
-        # self.trainer.interrupted = True
-        # self.trainer._state = TrainerState.INTERRUPTED
         raise KeyboardInterrupt
