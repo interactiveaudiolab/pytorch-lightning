@@ -183,15 +183,17 @@ class TrainLoop:
             for proc in self.trainer.interactive_ddp_procs:
                 subprocess.Popen.kill(proc)
 
-        # clean up dist group
-        if self.trainer.use_ddp or self.trainer.use_ddp2:
-            torch_distrib.destroy_process_group()
-
         # clear mem
         if self.trainer.on_gpu:
-            model = self.trainer.get_model()
-            model.cpu()
+            #model = self.trainer.get_model()
+            #model.cpu()
             torch.cuda.empty_cache()
+
+        if torch.distributed.is_available() and torch.distributed.is_initialized():
+            torch_distrib.destroy_process_group()
+
+        import os
+        print(f'Training teardown finished. RANK={self.trainer.global_rank} PID={os.getpid()}')
 
     def check_checkpoint_callback(self, should_check_val, force_save=False):
         model = self.trainer.get_model()
