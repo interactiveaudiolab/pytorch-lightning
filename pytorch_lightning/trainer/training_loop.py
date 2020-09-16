@@ -187,16 +187,12 @@ class TrainLoop:
 
         # clear mem
         if self.trainer.on_gpu:
-            #model = self.trainer.get_model()
-            #model.cpu()
             torch.cuda.empty_cache()
 
         if torch.distributed.is_available() and torch.distributed.is_initialized():
-            torch_distrib.destroy_process_group()
+            torch.distributed.destroy_process_group()
 
         self.trainer.signal_connector.restore_signals()
-        import os
-        print(f'Training teardown finished. RANK={self.trainer.global_rank} PID={os.getpid()}')
 
     def check_checkpoint_callback(self, should_check_val, force_save=False):
         model = self.trainer.get_model()
