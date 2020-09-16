@@ -71,6 +71,8 @@ class TrainLoop:
         return num_optimizers
 
     def on_train_start(self):
+        self.trainer.signal_connector.setup()
+
         # clear cache before training
         if self.trainer.on_gpu and self.trainer.root_gpu is not None:
             # use context because of:
@@ -192,6 +194,7 @@ class TrainLoop:
         if torch.distributed.is_available() and torch.distributed.is_initialized():
             torch_distrib.destroy_process_group()
 
+        self.trainer.signal_connector.restore_signals()
         import os
         print(f'Training teardown finished. RANK={self.trainer.global_rank} PID={os.getpid()}')
 
