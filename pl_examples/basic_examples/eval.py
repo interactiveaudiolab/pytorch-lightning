@@ -35,6 +35,8 @@ def foo():
     print(torch.rand(1, 2))
     print(numpy.random.uniform(0, 1, 3))
 
+    seed_everything(1234)
+
     # test
     result = trainer.test(datamodule=dm)
     result = result[0]
