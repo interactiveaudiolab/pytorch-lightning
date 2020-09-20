@@ -25,6 +25,7 @@ def foo():
         distributed_backend='ddp_spawn',
         gpus=[0, 1],
         deterministic=True,
+        replace_sampler_ddp=False,
     )
 
     # fit model
