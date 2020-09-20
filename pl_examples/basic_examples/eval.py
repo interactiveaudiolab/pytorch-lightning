@@ -17,7 +17,7 @@ def foo():
     dm = TrialMNISTDataModule(".")
 
     model = EvalModelTemplate()
-    print("start", model)
+    print("start", id(model))
 
     trainer = Trainer(
         default_root_dir=".",
@@ -31,7 +31,7 @@ def foo():
     # fit model
     result = trainer.fit(model, dm)
     #assert result == 1
-    print("end", trainer.get_model())
+    print("end", id(trainer.get_model()))
 
     print("2")
     print(torch.rand(1, 2))
