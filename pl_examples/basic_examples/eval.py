@@ -17,6 +17,7 @@ def foo():
     dm = TrialMNISTDataModule(".")
 
     model = EvalModelTemplate()
+    print("start", model)
 
     trainer = Trainer(
         default_root_dir=".",
@@ -30,6 +31,7 @@ def foo():
     # fit model
     result = trainer.fit(model, dm)
     #assert result == 1
+    print("end", trainer.get_model())
 
     print("2")
     print(torch.rand(1, 2))
@@ -40,6 +42,7 @@ def foo():
     # test
     print(trainer.checkpoint_callback.best_model_path)
     result = trainer.test(model, datamodule=dm)
+
     result = result[0]
     assert result['test_acc'] > 0.8
 
