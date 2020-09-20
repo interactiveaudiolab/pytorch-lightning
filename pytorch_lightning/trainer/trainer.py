@@ -565,6 +565,7 @@ class Trainer(
                 )
                 return {}
 
+            print("loading path", ckpt_path)
             ckpt = torch.load(ckpt_path, map_location=lambda storage, loc: storage)
             model.load_state_dict(ckpt['state_dict'])
 
