@@ -30,7 +30,7 @@ class TrainingStepVariations(ABC):
             log_val = log_val.item()
 
         if batch_idx == 0:
-            print("is it deterministic?", torch.rand(2, 2))
+            print("is it deterministic?", self.trainer.global_rank, torch.rand(2, 2))
 
         output = OrderedDict(
             {
