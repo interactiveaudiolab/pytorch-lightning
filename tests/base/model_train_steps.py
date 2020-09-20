@@ -29,6 +29,9 @@ class TrainingStepVariations(ABC):
         if batch_idx % 2 == 0:
             log_val = log_val.item()
 
+        if batch_idx == 0:
+            print("is it deterministic?", torch.rand(2, 2))
+
         output = OrderedDict(
             {
                 'loss': loss_val,

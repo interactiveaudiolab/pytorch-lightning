@@ -96,7 +96,7 @@ class EvalModelTemplate(
         x = torch.tanh(x)
         x = self.c_d1_bn(x)
         x = self.c_d1_drop(x)
-        print("is it deterministic?", torch.rand(2, 2))
+
         x = self.c_d2(x)
         logits = F.log_softmax(x, dim=1)
 
