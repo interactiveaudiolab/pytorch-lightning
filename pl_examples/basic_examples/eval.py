@@ -10,7 +10,7 @@ def foo():
     import os
     os.environ['CUDA_VISIBLE_DEVICES'] = '0,1'
     seed_everything(1234)
-
+    print("1")
     print(torch.rand(1,2))
     print(numpy.random.uniform(0, 1, 3))
 
@@ -30,6 +30,10 @@ def foo():
     # fit model
     result = trainer.fit(model, dm)
     assert result == 1
+
+    print("2")
+    print(torch.rand(1, 2))
+    print(numpy.random.uniform(0, 1, 3))
 
     # test
     result = trainer.test(datamodule=dm)
