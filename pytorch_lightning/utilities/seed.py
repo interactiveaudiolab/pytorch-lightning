@@ -51,6 +51,7 @@ def seed_everything(seed: Optional[int] = None) -> int:
     np.random.seed(seed)
     torch.manual_seed(seed)
     torch.cuda.manual_seed_all(seed)
+    os.environ["PL_GLOBAL_SEED"] = str(seed)
     return seed
 
 
