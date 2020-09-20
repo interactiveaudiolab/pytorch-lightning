@@ -10,14 +10,9 @@ def foo():
     import os
     os.environ['CUDA_VISIBLE_DEVICES'] = '0,1'
     seed_everything(1234)
-    print("1")
-    print(torch.rand(1,2))
-    print(numpy.random.uniform(0, 1, 3))
 
     dm = TrialMNISTDataModule(".")
-
     model = EvalModelTemplate()
-    print("start", id(model))
 
     trainer = Trainer(
         default_root_dir=".",
@@ -28,19 +23,14 @@ def foo():
         deterministic=True,
     )
 
-    # fit model
-    result = trainer.fit(model, dm)
-    #assert result == 1
-    print("end", id(trainer.get_model()))
-    param = next(model.parameters())[0]
+    seed_everything(1234)
+    trainer.fit(model, dm)
+    param = next(model.parameters())[0][0]
     print(param)
 
     seed_everything(1234)
-
-    # test
-    print(trainer.checkpoint_callback.best_model_path)
     result = trainer.test(datamodule=dm)
-    param = next(trainer.get_model().parameters())[0]
+    param = next(trainer.get_model().parameters())[0][0]
     print(param)
 
     result = result[0]
