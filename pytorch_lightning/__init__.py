@@ -34,10 +34,18 @@ Documentation
 """
 
 import logging as python_logging
+import os
 
 _logger = python_logging.getLogger("lightning")
 _logger.addHandler(python_logging.StreamHandler())
 _logger.setLevel(python_logging.INFO)
+_logger.filter()
+import warnings
+
+warnings.simplefilter("ignore") # Change the filter in this process
+os.environ["PYTHONWARNINGS"] = "default" # Also affect subprocesses
+
+
 
 try:
     # This variable is injected in the __builtins__ by the build
