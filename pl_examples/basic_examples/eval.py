@@ -38,7 +38,7 @@ def foo():
     seed_everything(1234)
 
     # test
-    result = trainer.test(datamodule=dm)
+    result = trainer.test(model, datamodule=dm)
     result = result[0]
     assert result['test_acc'] > 0.8
 
