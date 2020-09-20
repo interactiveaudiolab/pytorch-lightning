@@ -32,16 +32,16 @@ def foo():
     result = trainer.fit(model, dm)
     #assert result == 1
     print("end", id(trainer.get_model()))
-
-    print("2")
-    print(torch.rand(1, 2))
-    print(numpy.random.uniform(0, 1, 3))
+    param = next(model.parameters())[0]
+    print(param)
 
     seed_everything(1234)
 
     # test
     print(trainer.checkpoint_callback.best_model_path)
-    result = trainer.test(model, datamodule=dm)
+    result = trainer.test(datamodule=dm)
+    param = next(trainer.get_model().parameters())[0]
+    print(param)
 
     result = result[0]
     assert result['test_acc'] > 0.8
