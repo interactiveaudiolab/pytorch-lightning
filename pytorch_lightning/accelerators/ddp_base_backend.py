@@ -21,7 +21,7 @@ import torch.distributed as torch_distrib
 import torch.distributed as dist
 from pytorch_lightning.utilities.cloud_io import atomic_save
 from pytorch_lightning.utilities.distributed import rank_zero_warn, rank_zero_only
-from pytorch_lightning import _logger as log, seed_everything
+from pytorch_lightning import _logger as log
 
 try:
     from hydra.utils import to_absolute_path, get_original_cwd
@@ -97,6 +97,7 @@ class DDPBase(Accelerator):
         Returns:
 
         """
+        from pytorch_lightning import seed_everything
         seed = os.environ.get("PL_GLOBAL_SEED")
         seed_everything(seed)
 
