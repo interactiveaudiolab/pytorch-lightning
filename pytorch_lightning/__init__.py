@@ -39,7 +39,7 @@ import os
 _logger = python_logging.getLogger("lightning")
 _logger.addHandler(python_logging.StreamHandler())
 _logger.setLevel(python_logging.INFO)
-_logger.filter()
+
 import warnings
 
 warnings.simplefilter("ignore") # Change the filter in this process
