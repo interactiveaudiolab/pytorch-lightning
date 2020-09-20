@@ -29,7 +29,7 @@ def foo():
     print(param)
 
     seed_everything(1234)
-    result = trainer.test(datamodule=dm)
+    result = trainer.test(datamodule=dm, ckpt_path=None)
     param = next(trainer.get_model().parameters())[0][0]
     print(param)
 
