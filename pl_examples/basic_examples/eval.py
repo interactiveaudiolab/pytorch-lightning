@@ -28,7 +28,7 @@ def foo():
     )
 
     # fit model
-    # result = trainer.fit(model, dm)
+    result = trainer.fit(model, dm)
     #assert result == 1
 
     print("2")
@@ -38,6 +38,7 @@ def foo():
     seed_everything(1234)
 
     # test
+    print(trainer.checkpoint_callback.best_model_path)
     result = trainer.test(model, datamodule=dm)
     result = result[0]
     assert result['test_acc'] > 0.8
