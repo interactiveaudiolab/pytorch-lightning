@@ -25,12 +25,11 @@ def foo():
         distributed_backend='ddp_spawn',
         gpus=[0, 1],
         deterministic=True,
-        replace_sampler_ddp=False,
     )
 
     # fit model
-    result = trainer.fit(model, dm)
-    assert result == 1
+    # result = trainer.fit(model, dm)
+    #assert result == 1
 
     print("2")
     print(torch.rand(1, 2))
